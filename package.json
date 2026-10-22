@@ -1,0 +1,14 @@
+{
+  "name": "sanguo-quiz-bank",
+  "version": "1.0.0",
+  "private": true,
+  "description": "三国问答小程序题库（《三国演义》一百二十回原著校对版）",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "split": "node scripts/split-public.mjs",
+    "verify": "python3 scripts/verify-against-text.py",
+    "sync": "node scripts/sync-miniprogram.mjs && node scripts/sync-douyin.mjs",
+    "build": "node scripts/validate.mjs && node scripts/split-public.mjs && node scripts/sync-miniprogram.mjs && node scripts/sync-douyin.mjs",
+    "check:similar": "python3 scripts/check-similarity.py"
+  }
+}

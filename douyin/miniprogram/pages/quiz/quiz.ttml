@@ -1,0 +1,52 @@
+<view class="quiz">
+  <view class="bar">
+    <text class="idx">第 {{index + 1}} / {{total}} 题</text>
+    <text class="score">得分 {{score}}</text>
+  </view>
+
+  <view tt:if="{{total === 0}}" class="card done">
+    <view class="text">暂无题目（错题本是空的），先去答几道题吧。</view>
+    <button class="next" bindtap="onBackHome">返回首页</button>
+  </view>
+
+  <view tt:elif="{{!finished}}" class="card">
+    <view class="meta">
+      <text class="tag cat">{{question.category}}</text>
+      <text class="tag lv">难度 {{question.difficulty}}</text>
+    </view>
+
+    <view class="stem">{{question.stem}}</view>
+
+    <view class="options">
+      <view
+        tt:for="{{question.options}}"
+        tt:key="key"
+        class="opt {{chosen === item.key ? 'picked' : ''}} {{answered && item.key === result.rightKey ? 'right' : ''}} {{answered && chosen === item.key && !result.correct ? 'wrong' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onPick"
+      >
+        <text class="k">{{item.key}}</text>
+        <text class="t">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view tt:if="{{answered}}" class="explain">
+      <view class="verdict {{result.correct ? 'ok' : 'no'}}">
+        {{result.correct ? '答对了' : '答错了，正确答案是 ' + result.rightKey}}
+      </view>
+      <view class="text">{{analysis}}</view>
+      <view tt:if="{{source}}" class="src">
+        出处：{{source.scene}}<text tt:if="{{source.chapter}}">（第 {{source.chapter}} 回）</text>
+        · 原文：{{source.evidence}}
+      </view>
+      <button class="next" bindtap="onNext">{{index + 1 >= total ? '查看成绩' : '下一题'}}</button>
+    </view>
+  </view>
+
+  <view tt:elif="{{finished}}" class="card done">
+    <view class="final">本局得分 {{score}} / {{total}}</view>
+    <view class="text">累计答题 {{stats.answered}} 次，正确率 {{stats.accuracy}}%，最高连对 {{stats.maxStreak}} 题。</view>
+    <button class="next" bindtap="onRestart">再来一局</button>
+    <button class="next ghost" bindtap="onBackHome">返回首页</button>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/sanguo-quiz/question.schema.json",
+  "title": "三国演义问答题",
+  "description": "《三国演义》原著问答题（单选）题目结构。所有题干、选项、答案、解析均以罗贯中《三国演义》一百二十回原文为依据，评书、戏曲、民间演绎的设定不作为正确答案。",
+  "type": "object",
+  "required": ["id", "type", "stem", "options", "answer", "analysis", "difficulty", "category", "tags", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^sg-[0-9]{3}$",
+      "description": "题目唯一 ID，格式 sg-001 ~ sg-302，用于错题本、收藏、答题记录的主键"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["single"],
+      "description": "题型。目前只有单选。预留 multi/judge 扩展"
+    },
+    "stem": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 120,
+      "description": "题干。必须为完整问句，只问一个考点，不得出现二义"
+    },
+    "options": {
+      "type": "object",
+      "description": "四个选项，键为 A/B/C/D，值为选项文本。键名固定，不用数组下标，便于小程序直接 wx:for 渲染",
+      "required": ["A", "B", "C", "D"],
+      "additionalProperties": false,
+      "properties": {
+        "A": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "B": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "C": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "D": { "type": "string", "minLength": 1, "maxLength": 60 }
+      }
+    },
+    "answer": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "正确答案的选项键，必须是 options 里存在的键"
+    },
+    "analysis": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 300,
+      "description": "解析。必须说明原文依据，并点明干扰项错在哪；不得只写答案"
+    },
+    "difficulty": {
+      "type": "integer",
+      "enum": [1, 2, 3],
+      "description": "难度：1 入门（字号、地名等记忆型）；2 中等（情节因果型）；3 难（细节、诗词原句、多人混淆型）"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["人物字号", "人物生平", "经典场景", "谋略计策", "经典战役", "诗词原文", "兵器坐骑", "地名官职", "成语典故"],
+      "description": "知识点大类，用于分类练习页与统计"
+    },
+    "tags": {
+      "type": "array",
+      "description": "细粒度标签，如 ['桃园结义','刘备']，用于检索和专项练习",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": { "type": "string" }
+    },
+    "source": {
+      "type": "object",
+      "required": ["chapter", "scene", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "chapter": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 120,
+          "description": "原著回目号（1~120）。存疑或跨回情节填 null，此时以 scene + evidence 为准"
+        },
+        "scene": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40,
+          "description": "情节名，如「三顾茅庐」「舌战群儒」"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 200,
+          "description": "原文依据：原著原句或原著情节的忠实梗概。这是「忠于原文」的可核查凭证"
+        }
+      }
+    }
+  }
+}

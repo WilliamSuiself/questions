@@ -1,0 +1,30 @@
+<view class="report">
+  <view class="summary">
+    <view class="stat">
+      <text class="num">{{stats.answered}}</text>
+      <text class="label">累计答题</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{stats.accuracy}}%</text>
+      <text class="label">正确率</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{stats.maxStreak}}</text>
+      <text class="label">最高连对</text>
+    </view>
+  </view>
+
+  <view class="section-title">分类掌握度</view>
+  <view class="list">
+    <view class="item" wx:for="{{report}}" wx:key="category">
+      <view class="row">
+        <text class="name">{{item.category}}</text>
+        <text class="pct">{{item.mastery}}%</text>
+      </view>
+      <view class="bar-bg">
+        <view class="bar-fg" style="width: {{item.mastery}}%;"></view>
+      </view>
+      <view class="sub">共 {{item.total}} 题 · 错 {{item.wrong}} 题</view>
+    </view>
+  </view>
+</view>

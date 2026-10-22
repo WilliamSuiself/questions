@@ -1,0 +1,35 @@
+page {
+  background: #f5f1e8;
+  color: #3a342b;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+view, text, button {
+  box-sizing: border-box;
+}
+
+button {
+  font-size: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+.btn {
+  border-radius: 999rpx;
+  font-size: 30rpx;
+  line-height: 2.2;
+}
+
+.btn-primary {
+  background: #8a6a3c;
+  color: #fff;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: #8a6a3c;
+  border: 2rpx solid #d9c9a8;
+}

@@ -1,0 +1,15 @@
+.report { padding: 32rpx; min-height: 100vh; box-sizing: border-box; }
+.summary { display: flex; background: #fff; border-radius: 20rpx; padding: 28rpx 0; margin-bottom: 36rpx; box-shadow: 0 6rpx 24rpx rgba(90,70,40,.08); }
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8rpx; }
+.stat .num { font-size: 34rpx; font-weight: 700; color: #3a342b; }
+.stat .label { font-size: 22rpx; color: #8a7c66; }
+
+.section-title { font-size: 26rpx; color: #8a7c66; margin-bottom: 18rpx; }
+.list { display: flex; flex-direction: column; gap: 22rpx; }
+.item { background: #fff; border-radius: 16rpx; padding: 24rpx 28rpx; box-shadow: 0 6rpx 24rpx rgba(90,70,40,.06); }
+.row { display: flex; justify-content: space-between; margin-bottom: 14rpx; }
+.name { font-size: 28rpx; font-weight: 600; color: #3a342b; }
+.pct { font-size: 26rpx; color: #8a6a3c; font-weight: 600; }
+.bar-bg { height: 14rpx; border-radius: 999rpx; background: #efe6d4; overflow: hidden; }
+.bar-fg { height: 100%; border-radius: 999rpx; background: #8a6a3c; }
+.sub { margin-top: 12rpx; font-size: 22rpx; color: #b0a386; }

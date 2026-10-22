@@ -1,0 +1,16 @@
+.wrongbook { padding: 32rpx; min-height: 100vh; box-sizing: border-box; }
+.empty { padding: 120rpx 0; text-align: center; }
+.empty-text { font-size: 28rpx; color: #8a7c66; }
+
+.toolbar { display: flex; gap: 16rpx; margin-bottom: 28rpx; }
+.toolbar .practice { flex: 1; }
+.toolbar .clear { flex: none; padding: 0 36rpx; }
+
+.list { display: flex; flex-direction: column; gap: 20rpx; }
+.item { background: #fff; border-radius: 16rpx; padding: 28rpx 30rpx; box-shadow: 0 6rpx 24rpx rgba(90,70,40,.06); }
+.meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14rpx; }
+.tag { font-size: 22rpx; padding: 4rpx 16rpx; border-radius: 999rpx; background: #efe6d4; color: #7a5c32; }
+.count { font-size: 22rpx; color: #c0483f; }
+.stem { font-size: 30rpx; line-height: 1.6; color: #2f2a22; font-weight: 600; margin-bottom: 14rpx; }
+.answer { font-size: 26rpx; color: #3f9a5a; margin-bottom: 10rpx; }
+.analysis { font-size: 25rpx; line-height: 1.7; color: #6b6355; }
