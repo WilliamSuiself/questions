@@ -9,6 +9,10 @@
     "verify": "python3 scripts/verify-against-text.py",
     "sync": "node scripts/sync-miniprogram.mjs && node scripts/sync-douyin.mjs",
     "build": "node scripts/validate.mjs && node scripts/split-public.mjs && node scripts/sync-miniprogram.mjs && node scripts/sync-douyin.mjs",
-    "check:similar": "python3 scripts/check-similarity.py"
+    "check:similar": "python3 scripts/check-similarity.py",
+    "convert:harmonyos": "ascf convert -i miniprogram -o harmonyos -c"
+  },
+  "devDependencies": {
+    "@atomicservice/ascf-toolkit": "^1.0.17"
   }
 }

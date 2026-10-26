@@ -1,0 +1,9 @@
+<view class="category-page">
+  <view class="tip">选一个方向，专项突破</view>
+  <view class="list">
+    <view class="item" has:for="{{categories}}" has:key="name" data-name="{{item.name}}" bindtap="onPick">
+      <view class="name">{{item.name}}</view>
+      <view class="count">{{item.total}} 题</view>
+    </view>
+  </view>
+</view>

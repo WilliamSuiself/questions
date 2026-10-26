@@ -1,0 +1,44 @@
+<view class="challenge">
+  <view class="bar">
+    <text class="score">答对 {{score}} 题</text>
+    <view class="lives">
+      <text has:for="{{livesArray}}" has:key="*this" class="life {{index < mistakes ? 'lost' : ''}}">●</text>
+    </view>
+  </view>
+
+  <view has:if="{{!over}}" class="card">
+    <view class="meta">
+      <text class="tag cat">{{question.category}}</text>
+      <text class="tag lv">难度 {{question.difficulty}}</text>
+    </view>
+
+    <view class="stem">{{question.stem}}</view>
+
+    <view class="options">
+      <view has:for="{{question.options}}" has:key="key" class="opt {{chosen === item.key ? 'picked' : ''}} {{answered && item.key === result.rightKey ? 'right' : ''}} {{answered && chosen === item.key && !result.correct ? 'wrong' : ''}}" data-key="{{item.key}}" bindtap="onPick">
+        <text class="k">{{item.key}}</text>
+        <text class="t">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view has:if="{{answered}}" class="explain">
+      <view class="verdict {{result.correct ? 'ok' : 'no'}}">
+        {{result.correct ? '答对了' : '答错了，正确答案是 ' + result.rightKey}}
+      </view>
+      <view class="text">{{analysis}}</view>
+      <view has:if="{{source}}" class="src">
+        出处：{{source.scene}}<text has:if="{{source.chapter}}">（第 {{source.chapter}} 回）</text>
+        · 原文：{{source.evidence}}
+      </view>
+      <button class="next" bindtap="onNext">{{willEnd ? '查看结果' : '下一题'}}</button>
+    </view>
+  </view>
+
+  <view has:else class="card done">
+    <view class="final">本局答对 {{score}} 题</view>
+    <view has:if="{{isNewBest}}" class="newbest">恭喜刷新最高纪录！</view>
+    <view class="text">历史最高答对 {{best}} 题，答错 {{maxMistakes}} 题即结束本局。</view>
+    <button class="next" bindtap="onRestart">再战一局</button>
+    <button class="next ghost" bindtap="onBackHome">返回首页</button>
+  </view>
+</view>

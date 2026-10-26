@@ -1,0 +1,52 @@
+<view class="home">
+  <view class="hero">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"/>
+    <view class="title">三国问答</view>
+    <view class="subtitle">以《三国演义》一百二十回原著为准 · 共 {{total}} 题 · {{categoryCount}} 大类</view>
+  </view>
+
+  <view class="entry featured" bindtap="onGoChallenge">
+    <view class="badge">推荐</view>
+    <view class="entry-title">夺标模式</view>
+    <view class="entry-desc">答错 3 题即结束，看谁答对的题目最多{{challengeBest > 0 ? '，历史最高 ' + challengeBest + ' 题' : ''}}</view>
+  </view>
+
+  <view class="stat-bar" has:if="{{stats && stats.answered > 0}}">
+    <view class="stat">
+      <text class="num">{{stats.answered}}</text>
+      <text class="label">已答题数</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{stats.accuracy}}%</text>
+      <text class="label">正确率</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{stats.maxStreak}}</text>
+      <text class="label">最高连对</text>
+    </view>
+  </view>
+
+  <view class="menu">
+    <view class="entry primary" bindtap="onStartRandom">
+      <view class="entry-title">快速一局</view>
+      <view class="entry-desc">随机 10 题，答完即见成绩</view>
+    </view>
+
+    <view class="entry" bindtap="onGoCategory">
+      <view class="entry-title">分类练习</view>
+      <view class="entry-desc">人物字号 · 经典战役 · 谋略计策 等 {{categoryCount}} 类</view>
+    </view>
+
+    <view class="entry" bindtap="onGoWrongBook">
+      <view class="entry-title">错题本</view>
+      <view class="entry-desc">{{wrongCount > 0 ? '有 ' + wrongCount + ' 道题待巩固' : '暂无错题，继续保持'}}</view>
+    </view>
+
+    <view class="entry" bindtap="onGoReport">
+      <view class="entry-title">学习报告</view>
+      <view class="entry-desc">查看各分类掌握度</view>
+    </view>
+  </view>
+
+  <view class="footer">题干、选项、解析均逐条核验自原著，拒绝评书 / 戏说设定</view>
+</view>

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "A quiz app based on Romance of the Three Kingdoms"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "A quiz app based on Romance of the Three Kingdoms"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SanguoWenda"
+    }
+  ]
+}

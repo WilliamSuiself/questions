@@ -159,6 +159,20 @@ douyin/
     pages/                       # index / challenge / category / quiz / wrongbook / report，逻辑与微信版一一对应
 ```
 
+## 用华为 ASCF 工具转鸿蒙元服务
+
+`harmonyos/` 是用华为官方 `@atomicservice/ascf-toolkit` 把 `miniprogram/`（微信小程序版）
+转换出来的 HarmonyOS 元服务（Atomic Service）工程骨架：
+
+```bash
+npm install                 # 装 @atomicservice/ascf-toolkit（devDependency）
+npm run convert:harmonyos   # 等价于 ascf convert -i miniprogram -o harmonyos -c
+```
+
+转换本身不需要 DevEco Studio；但编译签名出 HAP/APP 包需要鸿蒙 SDK（无论装不装 DevEco
+Studio 的图形界面，SDK 本体都要 ~7GB），建议在另一台磁盘空间够用的电脑上完成，具体步骤
+（替换占位 appId、配签名、编译打包）写在 `harmonyos/README.md` 里。
+
 ## 小程序端接入（题库 API）
 
 ```js

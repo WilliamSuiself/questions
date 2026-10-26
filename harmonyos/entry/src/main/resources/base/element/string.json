@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "三国演义原著问答小程序"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "三国演义原著问答小程序"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "三国问答"
+    }
+  ]
+}

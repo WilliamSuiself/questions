@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/challenge/challenge",
+    "pages/category/category",
+    "pages/quiz/quiz",
+    "pages/wrongbook/wrongbook",
+    "pages/report/report"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#8a6a3c",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "三国问答",
+    "backgroundColor": "#f5f1e8",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
+}

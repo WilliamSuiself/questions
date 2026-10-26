@@ -1,0 +1,24 @@
+<view class="wrongbook">
+  <view has:if="{{list.length === 0}}" class="empty">
+    <view class="empty-text">暂无错题，继续保持 👍</view>
+  </view>
+
+  <block has:else>
+    <view class="toolbar">
+      <button class="btn btn-primary practice" bindtap="onPractice">错题重练（{{list.length}} 题）</button>
+      <button class="btn btn-ghost clear" bindtap="onClear">清空</button>
+    </view>
+
+    <view class="list">
+      <view class="item" has:for="{{list}}" has:key="id">
+        <view class="meta">
+          <text class="tag">{{item.category}}</text>
+          <text class="count">错 {{item.wrongCount}} 次</text>
+        </view>
+        <view class="stem">{{item.stem}}</view>
+        <view class="answer">正确答案：{{item.answer}}. {{item.options[item.answer]}}</view>
+        <view class="analysis">{{item.analysis}}</view>
+      </view>
+    </view>
+  </block>
+</view>
