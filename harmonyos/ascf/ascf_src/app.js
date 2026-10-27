@@ -1,6 +1,6 @@
 App({
   globalData: {
-    appName: '三国问答',
+    appName: '三国最强大脑',
   },
 
   onLaunch() {

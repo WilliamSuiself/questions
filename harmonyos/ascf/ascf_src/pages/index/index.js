@@ -37,7 +37,7 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '三国问答 —— 来挑战夺标模式，答错 3 题就出局',
+      title: '三国最强大脑 —— 来挑战夺标模式，答错 3 题就出局',
       path: '/pages/index/index',
       imageUrl: '/images/logo.png',
     }

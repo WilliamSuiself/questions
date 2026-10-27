@@ -1,7 +1,7 @@
 <view class="home">
   <view class="hero">
     <image class="logo" src="/images/logo.png" mode="aspectFit"/>
-    <view class="title">三国问答</view>
+    <view class="title">三国最强大脑</view>
     <view class="subtitle">以《三国演义》一百二十回原著为准 · 共 {{total}} 题 · {{categoryCount}} 大类</view>
   </view>
 
