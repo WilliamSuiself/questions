@@ -24,6 +24,7 @@ const STORAGE_KEYS = {
   fav: 'sg_quiz_favorites', // 收藏：{ [id]: true }
   stats: 'sg_quiz_stats', // 统计：{ answered, correct, streak, maxStreak }
   challengeBest: 'sg_quiz_challenge_best', // 夺标模式历史最高分（答对题数）
+  answered: 'sg_quiz_answered_ids', // 练过的题：{ [id]: lastAnsweredAt }，不管对错都记，用来算「有没有练过」
 }
 
 function shuffle(list) {
@@ -135,6 +136,10 @@ function writeStore(key, value) {
 
 /** 记录一次作答结果 */
 function recordAnswer(questionId, correct) {
+  const answeredIds = readStore(STORAGE_KEYS.answered, {})
+  answeredIds[questionId] = Date.now()
+  writeStore(STORAGE_KEYS.answered, answeredIds)
+
   const stats = readStore(STORAGE_KEYS.stats, { answered: 0, correct: 0, streak: 0, maxStreak: 0 })
   stats.answered += 1
   if (correct) {
@@ -192,18 +197,25 @@ function getStats() {
   return s
 }
 
-/** 按分类统计掌握度，用于「学习报告」页 */
+/**
+ * 按分类统计掌握度，用于「学习报告」页。
+ * 掌握度只在「练过的题」范围内计算：没做过的分类不算 100% 掌握，
+ * 而是标记 practiced:false，交给 UI 显示成「未练习」，避免显得比实际更懂。
+ */
 function getCategoryReport() {
   const wrong = readStore(STORAGE_KEYS.wrong, {})
+  const answeredIds = readStore(STORAGE_KEYS.answered, {})
   const map = {}
   QUESTIONS.forEach((q) => {
-    if (!map[q.category]) map[q.category] = { category: q.category, total: 0, wrong: 0 }
+    if (!map[q.category]) map[q.category] = { category: q.category, total: 0, wrong: 0, attempted: 0 }
     map[q.category].total += 1
     if (wrong[q.id]) map[q.category].wrong += 1
+    if (answeredIds[q.id]) map[q.category].attempted += 1
   })
   return Object.values(map).map((c) => ({
     ...c,
-    mastery: c.total ? Math.round(((c.total - c.wrong) / c.total) * 100) : 100,
+    practiced: c.attempted > 0,
+    mastery: c.attempted ? Math.round(((c.attempted - c.wrong) / c.attempted) * 100) : 0,
   }))
 }
 

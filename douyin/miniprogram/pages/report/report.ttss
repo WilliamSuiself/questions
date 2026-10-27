@@ -10,6 +10,8 @@
 .row { display: flex; justify-content: space-between; margin-bottom: 14rpx; }
 .name { font-size: 28rpx; font-weight: 600; color: #3a342b; }
 .pct { font-size: 26rpx; color: #8a6a3c; font-weight: 600; }
+.pct.muted { color: #b0a386; font-weight: 400; }
 .bar-bg { height: 14rpx; border-radius: 999rpx; background: #efe6d4; overflow: hidden; }
 .bar-fg { height: 100%; border-radius: 999rpx; background: #8a6a3c; }
+.bar-fg.empty { background: repeating-linear-gradient(135deg, #e6ddcc, #e6ddcc 8rpx, #efe6d4 8rpx, #efe6d4 16rpx); }
 .sub { margin-top: 12rpx; font-size: 22rpx; color: #b0a386; }

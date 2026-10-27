@@ -19,12 +19,12 @@
     <view class="item" wx:for="{{report}}" wx:key="category">
       <view class="row">
         <text class="name">{{item.category}}</text>
-        <text class="pct">{{item.mastery}}%</text>
+        <text class="pct {{item.practiced ? '' : 'muted'}}">{{item.practiced ? item.mastery + '%' : '未练习'}}</text>
       </view>
       <view class="bar-bg">
-        <view class="bar-fg" style="width: {{item.mastery}}%;"></view>
+        <view class="bar-fg {{item.practiced ? '' : 'empty'}}" style="width: {{item.practiced ? item.mastery : 100}}%;"></view>
       </view>
-      <view class="sub">共 {{item.total}} 题 · 错 {{item.wrong}} 题</view>
+      <view class="sub">共 {{item.total}} 题{{item.practiced ? ' · 错 ' + item.wrong + ' 题' : ' · 还没做过，去练练看'}}</view>
     </view>
   </view>
 </view>
